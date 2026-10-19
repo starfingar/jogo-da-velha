@@ -78,3 +78,22 @@ function criarJogo() {
     }
   };
 }
+
+let jogo = criarJogo();
+
+casasDisp.forEach(casa => {
+  casa.addEventListener('click', e => {
+    const indice = parseInt(e.target.getAttribute('data-index'));
+
+    if (jogo.jogar(indice)) {
+      e.target.textContent = jogo.mostrarTabuleiro()[indice];
+      pJogadorAtual.textContent = jogo.obterEstado();
+    }
+  });
+});
+
+btoReiniciar.addEventListener('click', () => {
+  jogo = criarJogo();
+  casasDisp.forEach(casa => (casa.textContent = ''));
+  pJogadorAtual.textContent = jogo.obterEstado();
+});
