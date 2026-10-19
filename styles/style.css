@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 100dvh;
+  background-color: #fbd33c;
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+}
+
+.grupo-casas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: min(60vw, 360px);
+  aspect-ratio: 1 / 1 ;
+  gap: 8px;
+  background-color: #333;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.casa {
+  background-color: #f8f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(2.5rem, 12vw, 4rem);
+  font-weight: bold;
+  color: #222;
+  border-radius: 4px;
+}
+
+.github-logo {
+  width: 80px;
+  height: 80px;
+}
