@@ -14,29 +14,67 @@ const COMBINACOES_VITORIA = [
 ];
 
 function criarTabuleiro() {
-    const casas = ['', '', '', '', '', '', '', '', ''];
-    const indiceValido = (indice) => indice >= 0 && indice <= 8;
-    const estaVazia = (indice) => casas[indice] === '';
+  const casas = ['', '', '', '', '', '', '', '', ''];
+  const indiceValido = indice => indice >= 0 && indice <= 8;
+  const estaVazia = indice => casas[indice] === '';
 
-    return {
-        marcarCasa(indice, simbolo) {
-            if (!indiceValido(indice) || !estaVazia(indice)) {
-                return false;
-            }
-            casas[indice] = simbolo;
-            return true;
-        },
-        mostrarCasas() {
-            return [...casas];
-        },
-        estaCheio() {
-            return casas.every(casa => casa !== '');
-        }
-    };
+  return {
+    marcarCasa(indice, simbolo) {
+      if (!indiceValido(indice) || !estaVazia(indice)) {
+        return false;
+      }
+      casas[indice] = simbolo;
+      return true;
+    },
+    mostrarCasas() {
+      return [...casas];
+    },
+    estaCheio() {
+      return casas.every(casa => casa !== '');
+    }
+  };
 }
 
 function verificarVitoria(tabuleiro, simbolo) {
-    return COMBINACOES_VITORIA.some(combinacao => 
-        combinacao.every(indice => tabuleiro[indice] === simbolo)
-    );
+  return COMBINACOES_VITORIA.some(combinacao =>
+    combinacao.every(indice => tabuleiro[indice] === simbolo)
+  );
+}
+
+function criarJogo() {
+  const tabuleiro = criarTabuleiro();
+  let jogadorAtual = 'X';
+  let vencedor = null;
+  let empate = false;
+
+  const alternarTurno = () => {
+    jogadorAtual = jogadorAtual === 'X' ? 'O' : 'X';
+  };
+
+  return {
+    jogar(indice) {
+      if (vencedor || empate) return false;
+
+      if (!tabuleiro.marcarCasa(indice, jogadorAtual)) {
+        return false;
+      }
+
+      if (verificarVitoria(tabuleiro.mostrarCasas(), jogadorAtual)) {
+        vencedor = jogadorAtual;
+      } else if (tabuleiro.estaCheio()) {
+        empate = true;
+      } else {
+        alternarTurno();
+      }
+      return true;
+    },
+    mostrarTabuleiro() {
+      return tabuleiro.mostrarCasas();
+    },
+    obterEstado() {
+      if (vencedor) return `O jogador ${vencedor} venceu!`;
+      if (empate) return 'Empate!';
+      return `Vez do jogador ${jogadorAtual}`;
+    }
+  };
 }
