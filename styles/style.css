@@ -4,26 +4,44 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  height: 100dvh;
+  min-height: 100dvh;
   background-color: #fbd33c;
   font-family: 'Montserrat', sans-serif;
-  padding: 20px;
+}
+
+header {
+  margin-top: 16px;
+  font-size: clamp(0.855rem, 4vw, 2rem);
+  color: #333;
+  padding: 0 20px;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: auto 0;
+  padding: 0 20px;
+  width: 100%;
 }
 
 .grupo-casas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  width: min(60vw, 360px);
-  aspect-ratio: 1 / 1 ;
+  width: min(55vw, 45vh, 320px);
+  aspect-ratio: 1 / 1;
   gap: 8px;
   background-color: #333;
   padding: 8px;
@@ -35,13 +53,50 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(2.5rem, 12vw, 4rem);
+  font-size: clamp(2rem, 10vw, 3.5rem);
   font-weight: bold;
   color: #222;
   border-radius: 4px;
 }
 
+.jogador-atual {
+  font-size: clamp(0.9rem, 4vw, 1.5rem);
+  color: #333;
+  text-align: center;
+}
+
+.bto-reiniciar {
+  padding: 10px 20px;
+  background-color: #f8f8ff;
+  color: #333;
+  font-size: clamp(0.9rem, 4vw, 1.5rem);
+  border: 3px solid #333;
+  border-radius: 12px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.bto-reiniciar:active {
+  transform: scale(0.95) translateY(2px);
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 32px 32px 0px 0px;
+  background-color: #f8f8ff;
+  padding: 14px;
+}
+
 .github-logo {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  max-width: 40px;
+  height: auto;
+  transition: 0.2s;
+}
+
+.github-logo:hover {
+  transform: scale(0.9);
 }
